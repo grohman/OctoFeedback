@@ -5,7 +5,7 @@ return [
     'component' => [
         'feedback' => [
             'name' => 'Обратная связь',
-            'description' => 'Обработка форм обратной свящи',
+            'description' => 'Обработка форм обратной связи',
 
             'channelCode' => [
                 'title' => 'Канал',
