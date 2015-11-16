@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Lang;
 use System\Classes\PluginBase;
 use App;
+use Grohman\Feedback\Models\Feedback as FeedbackModel;
 
 /**
  * feedback Plugin Information File
@@ -23,6 +24,18 @@ class Plugin extends PluginBase
             'author'      => 'Daniel Podrabinek',
             'icon'        => 'icon-comments-o'
         ];
+    }
+
+    public function boot()
+    {
+        $isBackend = $this->app->runningInBackend();
+        FeedbackModel::extend(function (FeedbackModel $model) use ($isBackend) {
+            if (class_exists('\Grohman\Tattler\Lib\Inject')) {
+                if ($model->isClassExtendedWith('\Grohman\Tattler\Lib\Inject') == false && $isBackend == false) {
+                    $model->extendClassWith('\Grohman\Tattler\Lib\Inject');
+                }
+            }
+        });
     }
 
     /**
