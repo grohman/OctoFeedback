@@ -68,7 +68,7 @@ class EmailMethod implements Method
                     'method_data[backmail_subject]' => [
                         'label' => 'Тема ответного письма',
                         'trigger' => [
-                            'action' => 'enable',
+                            'action' => 'show',
                             'field' => 'method_data[backmail]',
                             'condition' => 'checked',
                         ],
@@ -79,7 +79,7 @@ class EmailMethod implements Method
                         'language' => 'twig',
                         'type' => 'codeeditor',
                         'trigger' => [
-                            'action' => 'enable',
+                            'action' => 'show',
                             'field' => 'method_data[backmail]',
                             'condition' => 'checked',
                         ],
