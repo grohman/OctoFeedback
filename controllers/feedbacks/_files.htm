@@ -1,0 +1,7 @@
+<ul>
+<?php
+foreach($model->files as $file){
+    echo '<li><a href="'.$file->getPath().'" target="_blank">'.$file->getFilename().'</a> '.$file->sizeToString().' </li>';
+}
+?>
+</ul>
