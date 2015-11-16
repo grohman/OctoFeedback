@@ -104,7 +104,7 @@ class EmailMethod implements Method
         $subject = $twig->render('subject', $data);
         $files = $data[ 'files' ];
         $data[ 'files' ] = [ ];
-        foreacH ($files as $file) {
+        foreach ($files as $file) {
             $data[ 'files' ][] = [ 'name' => $file->getClientOriginalName(), 'path' => $file->getRealPath() ];
         }
 
