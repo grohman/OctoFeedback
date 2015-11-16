@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: feedback
+
+# Model Form Field configuration
+form: $/grohman/feedback/models/feedback/fields.yaml
+
+# Model Class name
+modelClass: Grohman\Feedback\Models\Feedback
+
+# Default redirect location
+defaultRedirect: grohman/feedback/feedbacks
+
+# Create page
+create:
+    title: Добавить фидбек
+    redirect: grohman/feedback/feedbacks/update/:id
+    redirectClose: grohman/feedback/feedbacks
+
+# Update page
+update:
+    title: Редактировать фидбек
+    redirect: grohman/feedback/feedbacks
+    redirectClose: grohman/feedback/feedbacks
+
+# Preview page
+preview:
+    title: Preview feedback

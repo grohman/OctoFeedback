@@ -1,0 +1,22 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+
+    name:
+        label: Name
+
+    email:
+        label: Email
+
+    message:
+        label: Message
+        type: textarea
+
+    file:
+        label: Файл
+        type: partial

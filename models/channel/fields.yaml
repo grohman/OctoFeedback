@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: grohman.feedback::lang.channel.name
+
+    code:
+        label: grohman.feedback::lang.channel.code
+        preset:
+            field: name
+            type: slug
+
+    method:
+        label: grohman.feedback::lang.channel.method
+        type: dropdown
+
+    prevent_save_database:
+        label: grohman.feedback::lang.backend.settings.channel.preventSaveDatabase
+        type: checkbox
+
+    warning:
+        type: hint
+        path: @/plugins/grohman/feedback/controllers/channels/_no_action_warning.htm

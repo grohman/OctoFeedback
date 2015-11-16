@@ -1,0 +1,12 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    code:
+        label: grohman.feedback::lang.channel.code
+        searchable: true
+
+    name:
+        label: grohman.feedback::lang.channel.name
+        searchable: true

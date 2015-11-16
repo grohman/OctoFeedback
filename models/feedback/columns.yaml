@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: "#"
+        searchable: true
+    name:
+        label: Имя
+        searchable: true
+    email:
+        label: Email
+        searchable: true
+    phone:
+        label: Телефон
+        searchable: true
+    channel:
+        label: Канал
+        relation: channel
+        select: name
+    created_at:
+        label: Дата
+        searchable: true
+        type: datetime
