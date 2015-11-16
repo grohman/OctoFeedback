@@ -20,7 +20,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'Обратная связь',
             'description' => 'Управление формами обратной связи',
-            'author'      => 'Grohman',
+            'author'      => 'Daniel Podrabinek',
             'icon'        => 'icon-comments-o'
         ];
     }
