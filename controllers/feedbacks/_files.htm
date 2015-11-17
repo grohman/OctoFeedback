@@ -1,7 +1,7 @@
-<ul>
+<ul style="list-style:none;">
 <?php
 foreach($model->files as $file){
-    echo '<li><a href="'.$file->getPath().'" target="_blank">'.$file->getFilename().'</a> '.$file->sizeToString().' </li>';
+    echo '<li><a href="'.$file->getPath().'" target="_blank">'.($file->isImage()?'<img src="'.$file->getThumb(150,150).'"><br>':'').$file->getFilename().'</a> '.$file->sizeToString().' </li>';
 }
 ?>
 </ul>
