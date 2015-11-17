@@ -17,6 +17,6 @@ fields:
         label: Message
         type: textarea
 
-    file:
-        label: Файл
+    files:
+        label: Файлы
         type: partial

@@ -5,7 +5,7 @@ return [
     'component' => [
         'feedback' => [
             'name' => 'Обратная связь',
-            'description' => 'Обработка форм обратной свящи',
+            'description' => 'Обработка форм обратной свяи',
 
             'channelCode' => [
                 'title' => 'Канал',
@@ -61,7 +61,8 @@ return [
         'email' => 'Email',
         'message' => 'Сообщение',
         'phone' => 'Телефон',
-        'file' => 'Файл'
+        'file' => 'Файл',
+        'files' => 'Файлы',
     ],
 
     'mail_template' => [

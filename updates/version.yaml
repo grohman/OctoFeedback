@@ -22,3 +22,6 @@
 1.2.6:
     - Change channels method_data type
     - change_channels_method_data.php
+1.2.7:
+  - Run table migrations
+  - remove_file_from_feedbacks.php

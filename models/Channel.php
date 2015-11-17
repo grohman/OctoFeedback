@@ -10,21 +10,48 @@ class Channel extends \October\Rain\Database\Model
 {
     use Validation;
 
+    public static $methods = [
+        'none' => [ '\Grohman\Feedback\Classes\NoneMethod', "-- None --" ],
+        'email' => [ '\Grohman\Feedback\Classes\EmailMethod', "Email" ]
+    ];
     /**
      * @var string The database table used by the model.
      */
     public $table = 'grohman_feedback_channels';
-
+    public $rules = [
+        'name' => 'required',
+        'code' => 'required',
+        'method' => 'required'
+    ];
+    public $attributeNames = [
+        'name' => 'grohman.feedback::lang.channel.name',
+        'code' => 'grohman.feedback::lang.channel.code',
+        'method' => 'grohman.feedback::lang.channel.method'
+    ];
+    /**
+     * @var array Relations
+     */
+    public $hasOne = [ ];
+    public $hasMany = [
+        'feedbacks' => '\Grohman\Feedback\Models\Feedback'
+    ];
+    public $belongsTo = [ ];
+    public $belongsToMany = [ ];
+    public $morphTo = [ ];
+    public $morphOne = [ ];
+    public $morphMany = [ ];
+    public $attachOne = [ ];
+    public $attachMany = [
+        'files' => [ 'System\Models\File' ]
+    ];
     /**
      * @var array List of attribute names which are json encoded and decoded from the database.
      */
-    protected $jsonable = ['method_data'];
-
+    protected $jsonable = [ 'method_data' ];
     /**
      * @var array Guarded fields
      */
-    protected $guarded = ['*'];
-
+    protected $guarded = [ '*' ];
     /**
      * @var array Fillable fields
      */
@@ -36,43 +63,35 @@ class Channel extends \October\Rain\Database\Model
         'prevent_save_database'
     ];
 
-    public $rules = [
-        'name' => 'required',
-        'code' => 'required',
-        'method' => 'required'
-    ];
+    /**
+     * @param string      $key
+     * @param string      $fqn
+     * @param null|string $alias
+     */
+    public static function registerMethod($key, $fqn, $alias = null)
+    {
+        $config = [ $fqn ];
+        if ($alias !== null) {
+            $config[] = $alias;
+        }
 
-    public $attributeNames = [
-        'name' => 'grohman.feedback::lang.channel.name',
-        'code' => 'grohman.feedback::lang.channel.code',
-        'method' => 'grohman.feedback::lang.channel.method'
-    ];
-
-    public static $methods = [
-        'none' => ['\Grohman\Feedback\Classes\NoneMethod', "-- None --"],
-        'email' => ['\Grohman\Feedback\Classes\EmailMethod', "Email"]
-    ];
+        self::$methods[ $key ] = $config;
+    }
 
     /**
-     * @var array Relations
+     * @param $code
+     * @return Channel
      */
-    public $hasOne = [];
-    public $hasMany = [
-        'feedbacks' => '\Grohman\Feedback\Models\Feedback'
-    ];
-    public $belongsTo = [];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    public static function getByCode($code)
+    {
+        return self::query()->where('code', '=', $code)->first();
+    }
 
     protected static function boot()
     {
         parent::boot();
 
-        self::saving(function($channel) {
+        self::saving(function ($channel) {
             if ($channel->code == null) {
                 $channel->code = \Str::slug($channel->name);
             }
@@ -86,7 +105,7 @@ class Channel extends \October\Rain\Database\Model
     public static function backendBoot()
     {
         foreach (self::$methods as $method) {
-            $namespace = $method[0];
+            $namespace = $method[ 0 ];
 
             $method = new $namespace();
             $method->boot();
@@ -95,45 +114,12 @@ class Channel extends \October\Rain\Database\Model
 
     public function getMethodOptions()
     {
-        $options = [];
+        $options = [ ];
         foreach (self::$methods as $key => $method) {
-            $options[$key] = isset($method[1]) ? $method[1] : $key;
+            $options[ $key ] = isset($method[ 1 ]) ? $method[ 1 ] : $key;
         }
 
         return $options;
-    }
-
-    /**
-     * @param string $key
-     * @param string $fqn
-     * @param null|string $alias
-     */
-    public static function registerMethod($key, $fqn, $alias=null)
-    {
-        $config = [$fqn];
-        if ($alias !== null) {
-            $config[] = $alias;
-        }
-
-        self::$methods[$key] = $config;
-    }
-
-    /**
-     * @return Method
-     */
-    public function getMethodObj()
-    {
-        $methodClass = self::$methods[$this->method][0];
-        return new $methodClass();
-    }
-
-    /**
-     * @param $code
-     * @return Channel
-     */
-    public static function getByCode($code)
-    {
-        return self::query()->where('code', '=', $code)->first();
     }
 
     /**
@@ -142,7 +128,7 @@ class Channel extends \October\Rain\Database\Model
      */
     public function send($data)
     {
-        $feedback = new \Grohman\Feedback\Models\Feedback($data);
+        $feedback = new Feedback($data);
         $feedback->channel_id = $this->id;
 
         if (!$this->prevent_save_database) {
@@ -151,6 +137,16 @@ class Channel extends \October\Rain\Database\Model
         }
 
         $this->getMethodObj()->send($this->method_data, $data);
+    }
+
+    /**
+     * @return Method
+     */
+    public function getMethodObj()
+    {
+        $methodClass = self::$methods[ $this->method ][ 0 ];
+
+        return new $methodClass();
     }
 
 }

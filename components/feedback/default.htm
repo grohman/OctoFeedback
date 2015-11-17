@@ -2,22 +2,7 @@
     We recommend to keep using the same names for the basic fields.
     However, you can add as much fields as you want.
 #}
-<form onsubmit="grohmanFeedbackFormSubmit(this, event);" method="POST">
-
-    <script>
-        function grohmanFeedbackFormSubmit(el, event) {
-            event.preventDefault();
-            $(el).request('{{ __SELF__ }}::onSend', {
-                success: function(data) {
-                    alert(data.result);
-                },
-                error: function(data) {
-                    alert(data.responseJSON.result);
-                }
-            });
-        }
-    </script>
-
+<form class="grohman_feedback-forms" class="form-inline" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="feedback-name">Name</label>
         <input type="text" class="form-control" name="feedback[name]" id="feedback-name" placeholder="Name">
@@ -37,6 +22,18 @@
         <label for="feedback-file">File</label>
         <input type="file" class="form-control" name="feedback[file]" id="feedback-file" placeholder="File" />
     </div>
+
+    <hr>
+    <div class="form-group">
+        <label for="feedback-files">Files</label>
+        <input type="file" class="form-control" name="feedback[files][]" id="feedback-files" placeholder="File" />
+    </div>
+
+    <div class="form-group">
+        <label for="feedback-files">Files</label>
+        <input type="file" class="form-control" name="feedback[files][]" id="feedback-files" placeholder="File" />
+    </div>
+    <hr>
 
     <div class="form-group">
         <label for="feedback-message">Message</label>

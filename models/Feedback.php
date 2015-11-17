@@ -30,7 +30,7 @@ class Feedback extends Model
         'email',
         'phone',
         'message',
-        'file',
+        'files',
         'channel_id'
     ];
 
@@ -52,7 +52,7 @@ class Feedback extends Model
         'name' => 'grohman.feedback::lang.feedback.name',
         'email' => 'grohman.feedback::lang.feedback.email',
         'phone' => 'grohman.feedback::lang.feedback.phone',
-        'file' => 'grohman.feedback::lang.feedback.file',
+        'files' => 'grohman.feedback::lang.feedback.files',
         'message' => 'grohman.feedback::lang.feedback.message'
     ];
 
@@ -78,7 +78,10 @@ class Feedback extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
-    public $attachMany = [];
+    public $attachMany = [
+        'files' => [ 'System\Models\File' ]
+    ];
+
 
     public static function archive($query)
     {
