@@ -66,8 +66,13 @@ return [
     ],
 
     'mail_template' => [
-        'description' => 'The feedback message to be sent to the email registered.'
+        'description' => 'Шаблон для отправки писем из модуля обратной связи'
     ],
+
+    'backmail_template' => [
+        'description' => 'Шаблон для автооответчика из модуля обратной связи.'
+    ],
+
 
     'permissions' => [
         'feedback' => [

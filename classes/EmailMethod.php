@@ -132,10 +132,9 @@ class EmailMethod implements Method
             ]);
             $backTwig = new \Twig_Environment($backLoader);
             $subject = $backTwig->render('subject', $data);
-            Mail::queue('grohman.feedback::base-email', [ 'content' => $backTwig->render('main', $data) ],
+            Mail::queue('grohman.feedback::back-email', [ 'content' => $backTwig->render('main', $data) ],
                 function (Message $message) use ($sendTo, $subject, $data) {
-                    $message->subject($subject);
-                    $message->to($sendTo);
+                    $message->to($sendTo)->subject($subject);
                 });
         }
     }

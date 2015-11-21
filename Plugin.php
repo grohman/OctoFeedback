@@ -97,7 +97,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'grohman.feedback::base-email' => Lang::get('grohman.feedback::lang.mail_template.description')
+            //'grohman.feedback::base-email' => Lang::get('grohman.feedback::lang.mail_template.description'),
+            //'grohman.feedback::back-email' => Lang::get('grohman.feedback::lang.backmail_template.description')
         ];
     }
 
