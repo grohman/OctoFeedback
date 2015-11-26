@@ -1,4 +1,4 @@
-<?php namespace Grohman\Feedback\Models;
+<?php namespace IDesigning\Feedback\Models;
 
 use Model;
 use October\Rain\Database\Builder;
@@ -15,7 +15,7 @@ class Feedback extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'grohman_feedback_feedbacks';
+    public $table = 'idesigning_feedback_feedbacks';
 
     /**
      * @var array Guarded fields
@@ -49,19 +49,19 @@ class Feedback extends Model
      * @var array The array of custom attribute names.
      */
     public $attributeNames = [
-        'name' => 'grohman.feedback::lang.feedback.name',
-        'email' => 'grohman.feedback::lang.feedback.email',
-        'phone' => 'grohman.feedback::lang.feedback.phone',
-        'files' => 'grohman.feedback::lang.feedback.files',
-        'message' => 'grohman.feedback::lang.feedback.message'
+        'name' => 'idesigning.feedback::lang.feedback.name',
+        'email' => 'idesigning.feedback::lang.feedback.email',
+        'phone' => 'idesigning.feedback::lang.feedback.phone',
+        'files' => 'idesigning.feedback::lang.feedback.files',
+        'message' => 'idesigning.feedback::lang.feedback.message'
     ];
 
     /**
      * @var array The array of custom error messages.
      */
     public $customMessages = [
-        'email' => 'grohman.feedback::lang.component.onSend.error.email.email',
-        'message' => 'grohman.feedback::lang.component.onSend.error.message.required'
+        'email' => 'idesigning.feedback::lang.component.onSend.error.email.email',
+        'message' => 'idesigning.feedback::lang.component.onSend.error.message.required'
     ];
 
 
@@ -71,7 +71,7 @@ class Feedback extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [
-        'channel' => '\Grohman\Feedback\Models\Channel'
+        'channel' => '\IDesigning\Feedback\Models\Channel'
     ];
     public $belongsToMany = [];
     public $morphTo = [];

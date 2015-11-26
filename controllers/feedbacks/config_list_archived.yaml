@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/grohman/feedback/models/feedback/columns.yaml
+list: $/idesigning/feedback/models/feedback/columns.yaml
 
 # Model Class name
-modelClass: Grohman\Feedback\Models\Feedback
+modelClass: IDesigning\Feedback\Models\Feedback
 
 # List Title
 title: Manage feedbacks
 
 # Link URL for each record
-recordUrl: grohman/feedback/feedbacks/preview/:id
+recordUrl: idesigning/feedback/feedbacks/preview/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
@@ -47,6 +47,6 @@ filter:
     scopes:
         channel:
             label: Channel
-            modelClass: \Grohman\Feedback\Models\Channel
+            modelClass: \IDesigning\Feedback\Models\Channel
             nameFrom: name
             conditions: channel_id in (:filtered)

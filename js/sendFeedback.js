@@ -41,8 +41,8 @@ $(function(){
         }
     }
 
-    if($('.grohman_feedback-forms').length) {
-        $('.grohman_feedback-forms').on('submit', function () {
+    if($('.idesigning_feedback-forms').length) {
+        $('.idesigning_feedback-forms').on('submit', function () {
             sendFeedbackForm(this, function (data) {
                 alert(data.result);
             }, function (data) {

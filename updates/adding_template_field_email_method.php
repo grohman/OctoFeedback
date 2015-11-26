@@ -1,6 +1,6 @@
-<?php namespace Grohman\Feedback\Updates;
+<?php namespace IDesigning\Feedback\Updates;
 
-use Grohman\Feedback\Models\Channel;
+use IDesigning\Feedback\Models\Channel;
 
 class AddingTemplateFieldEmailMethod extends \Seeder
 {

@@ -6,25 +6,25 @@
 name: channel
 
 # Model Form Field configuration
-form: $/grohman/feedback/models/channel/fields.yaml
+form: $/idesigning/feedback/models/channel/fields.yaml
 
 # Model Class name
-modelClass: Grohman\Feedback\Models\Channel
+modelClass: IDesigning\Feedback\Models\Channel
 
 # Default redirect location
-defaultRedirect: grohman/feedback/channels
+defaultRedirect: idesigning/feedback/channels
 
 # Create page
 create:
     title: Добавить канал
-    redirect: grohman/feedback/channels/update/:id
-    redirectClose: grohman/feedback/channels
+    redirect: idesigning/feedback/channels/update/:id
+    redirectClose: idesigning/feedback/channels
 
 # Update page
 update:
     title: Редактировать канал
-    redirect: grohman/feedback/channels
-    redirectClose: grohman/feedback/channels
+    redirect: idesigning/feedback/channels
+    redirectClose: idesigning/feedback/channels
 
 # Preview page
 preview:

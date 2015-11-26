@@ -1,10 +1,10 @@
-<?php namespace Grohman\Feedback\Classes;
+<?php namespace IDesigning\Feedback\Classes;
 
 
 use Backend\Models\User;
 use Backend\Widgets\Form;
-use Grohman\Feedback\Controllers\Channels;
-use Grohman\Feedback\Models\Channel;
+use IDesigning\Feedback\Controllers\Channels;
+use IDesigning\Feedback\Models\Channel;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,8 +16,8 @@ class EmailMethod implements Method
         Channels::extendFormFields(function (Form $form, $model) {
             $form->addFields([
                 'method_data[email_destination]' => [
-                    'label' => "grohman.feedback::lang.channel.emailDestination",
-                    'commentAbove' => "grohman.feedback::lang.backend.settings.channel.emailDestinationComment",
+                    'label' => "idesigning.feedback::lang.channel.emailDestination",
+                    'commentAbove' => "idesigning.feedback::lang.backend.settings.channel.emailDestinationComment",
                     'required' => true,
                     'trigger' => [
                         'action' => "show",
@@ -93,7 +93,7 @@ class EmailMethod implements Method
         Channel::extend(function (Channel $model) {
             $model->rules[ 'method_data.email_destination' ] = "emails";
             $model->attributeNames[ 'method_data.email_destination' ] =
-                'grohman.feedback::lang.channel.emailDestination';
+                'idesigning.feedback::lang.channel.emailDestination';
         });
    }
 
@@ -119,7 +119,7 @@ class EmailMethod implements Method
             $data[ 'files' ][] = [ 'name' => $file->getClientOriginalName(), 'path' => $file->getRealPath() ];
         }
 
-        Mail::queue('grohman.feedback::base-email', [ 'content' => $twig->render('main', $data) ],
+        Mail::queue('idesigning.feedback::base-email', [ 'content' => $twig->render('main', $data) ],
             function (Message $message) use ($sendTo, $subject, $data) {
 
                 foreach ($data[ 'files' ] as $file) {
@@ -150,7 +150,7 @@ class EmailMethod implements Method
                 $data['files'][] = ['name' => $file->getFilename(), 'path' => $file->getLocalPath()];
             }
 
-            Mail::queue('grohman.feedback::back-email', [ 'content' => $backTwig->render('main', $data) ],
+            Mail::queue('idesigning.feedback::back-email', [ 'content' => $backTwig->render('main', $data) ],
                 function (Message $message) use ($sendTo, $subject, $data) {
                     $message->to($sendTo)->subject($subject);
                     foreach ($data[ 'files' ] as $file) {

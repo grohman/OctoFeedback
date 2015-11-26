@@ -4,9 +4,9 @@
 
 columns:
     code:
-        label: grohman.feedback::lang.channel.code
+        label: idesigning.feedback::lang.channel.code
         searchable: true
 
     name:
-        label: grohman.feedback::lang.channel.name
+        label: idesigning.feedback::lang.channel.name
         searchable: true

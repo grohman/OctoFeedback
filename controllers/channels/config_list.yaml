@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/grohman/feedback/models/channel/columns.yaml
+list: $/idesigning/feedback/models/channel/columns.yaml
 
 # Model Class name
-modelClass: Grohman\Feedback\Models\Channel
+modelClass: IDesigning\Feedback\Models\Channel
 
 # List Title
 title: Управление каналами
 
 # Link URL for each record
-recordUrl: grohman/feedback/channels/update/:id
+recordUrl: idesigning/feedback/channels/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

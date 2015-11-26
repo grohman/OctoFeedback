@@ -1,6 +1,6 @@
-<?php namespace Grohman\Feedback\Models;
+<?php namespace IDesigning\Feedback\Models;
 
-use Grohman\Feedback\Classes\Method;
+use IDesigning\Feedback\Classes\Method;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -11,29 +11,29 @@ class Channel extends \October\Rain\Database\Model
     use Validation;
 
     public static $methods = [
-        'none' => [ '\Grohman\Feedback\Classes\NoneMethod', "-- None --" ],
-        'email' => [ '\Grohman\Feedback\Classes\EmailMethod', "Email" ]
+        'none' => [ '\IDesigning\Feedback\Classes\NoneMethod', "-- None --" ],
+        'email' => [ '\IDesigning\Feedback\Classes\EmailMethod', "Email" ]
     ];
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'grohman_feedback_channels';
+    public $table = 'idesigning_feedback_channels';
     public $rules = [
         'name' => 'required',
         'code' => 'required',
         'method' => 'required'
     ];
     public $attributeNames = [
-        'name' => 'grohman.feedback::lang.channel.name',
-        'code' => 'grohman.feedback::lang.channel.code',
-        'method' => 'grohman.feedback::lang.channel.method'
+        'name' => 'idesigning.feedback::lang.channel.name',
+        'code' => 'idesigning.feedback::lang.channel.code',
+        'method' => 'idesigning.feedback::lang.channel.method'
     ];
     /**
      * @var array Relations
      */
     public $hasOne = [ ];
     public $hasMany = [
-        'feedbacks' => '\Grohman\Feedback\Models\Feedback'
+        'feedbacks' => '\IDesigning\Feedback\Models\Feedback'
     ];
     public $belongsTo = [ ];
     public $belongsToMany = [ ];

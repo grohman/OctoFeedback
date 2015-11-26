@@ -1,9 +1,9 @@
-<?php namespace Grohman\Feedback;
+<?php namespace IDesigning\Feedback;
 
 use Illuminate\Support\Facades\Lang;
 use System\Classes\PluginBase;
 use App;
-use Grohman\Feedback\Models\Feedback as FeedbackModel;
+use IDesigning\Feedback\Models\Feedback as FeedbackModel;
 
 /**
  * feedback Plugin Information File
@@ -30,9 +30,9 @@ class Plugin extends PluginBase
     {
         $isBackend = $this->app->runningInBackend();
         FeedbackModel::extend(function (FeedbackModel $model) use ($isBackend) {
-            if (class_exists('\Grohman\Tattler\Lib\Inject')) {
-                if ($model->isClassExtendedWith('\Grohman\Tattler\Lib\Inject') == false && $isBackend == false) {
-                    $model->extendClassWith('\Grohman\Tattler\Lib\Inject');
+            if (class_exists('\IDesigning\Tattler\Lib\Inject')) {
+                if ($model->isClassExtendedWith('\IDesigning\Tattler\Lib\Inject') == false && $isBackend == false) {
+                    $model->extendClassWith('\IDesigning\Tattler\Lib\Inject');
                 }
             }
         });
@@ -73,7 +73,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            '\Grohman\Feedback\Components\Feedback' => 'feedback'
+            '\IDesigning\Feedback\Components\Feedback' => 'feedback'
         ];
     }
 
@@ -83,8 +83,8 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'grohman.feedback.manage' => ['label' => 'grohman.feedback::lang.permissions.feedback.manage', 'tab' => 'cms::lang.permissions.name'],
-            'grohman.feedback.settings.channel' => ['label' => 'grohman.feedback::lang.permissions.settings.channel', 'tab' => 'system::lang.permissions.name']
+            'idesigning.feedback.manage' => ['label' => 'idesigning.feedback::lang.permissions.feedback.manage', 'tab' => 'cms::lang.permissions.name'],
+            'idesigning.feedback.settings.channel' => ['label' => 'idesigning.feedback::lang.permissions.settings.channel', 'tab' => 'system::lang.permissions.name']
         ];
     }
 
@@ -97,8 +97,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            //'grohman.feedback::base-email' => Lang::get('grohman.feedback::lang.mail_template.description'),
-            //'grohman.feedback::back-email' => Lang::get('grohman.feedback::lang.backmail_template.description')
+            //'idesigning.feedback::base-email' => Lang::get('idesigning.feedback::lang.mail_template.description'),
+            //'idesigning.feedback::back-email' => Lang::get('idesigning.feedback::lang.backmail_template.description')
         ];
     }
 
@@ -107,22 +107,22 @@ class Plugin extends PluginBase
         return [
             'feedback' => [
                 'label'       => 'Обратная связь',
-                'url'         => \Backend::url('grohman/feedback/feedbacks'),
+                'url'         => \Backend::url('idesigning/feedback/feedbacks'),
                 'icon'        => 'icon-comments-o',
-                'permissions' => ['grohman.feedback.manage'],
+                'permissions' => ['idesigning.feedback.manage'],
 
                 'sideMenu' => [
                     'feedbacks' => [
-                        'label'       => 'Фидбеки',
+                        'label'       => 'Записи',
                         'icon'        => 'icon-inbox',
-                        'url'         => \Backend::url('grohman/feedback/feedbacks'),
-                        'permissions' => ['grohman.feedback.manage'],
+                        'url'         => \Backend::url('idesigning/feedback/feedbacks'),
+                        'permissions' => ['idesigning.feedback.manage'],
                     ],
                     'archived' => [
                         'label'       => 'Архив',
                         'icon'        => 'icon-archive',
-                        'url'         => \Backend::url('grohman/feedback/feedbacks/archived'),
-                        'permissions' => ['grohman.feedback.manage']
+                        'url'         => \Backend::url('idesigning/feedback/feedbacks/archived'),
+                        'permissions' => ['idesigning.feedback.manage']
                     ],
                 ]
 
@@ -138,10 +138,10 @@ class Plugin extends PluginBase
                 'description' => 'Управление каналами',
                 'category' => 'Обратная связь',
                 'icon' => 'icon-arrows',
-                'url' => \Backend::url('grohman/feedback/channels'),
+                'url' => \Backend::url('idesigning/feedback/channels'),
                 'order' => 500,
                 'keywords' => 'feedback channel',
-                'permissions' => ['grohman.feedback.settings.channel']
+                'permissions' => ['idesigning.feedback.settings.channel']
             ]
         ];
     }

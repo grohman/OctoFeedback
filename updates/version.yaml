@@ -25,3 +25,6 @@
 1.2.7:
   - Run table migrations
   - remove_file_from_feedbacks.php
+1.2.8:
+  - Run table migrations
+  - branding.php

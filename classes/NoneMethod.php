@@ -1,15 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Leonardo Shinagawa
- * Date: 28/06/15
- * Time: 10:22
- */
-
-namespace Grohman\Feedback\Classes;
+<?php namespace IDesigning\Feedback\Classes;
 
 
-use Grohman\Feedback\Models\Channel;
+use IDesigning\Feedback\Models\Channel;
 
 class NoneMethod implements Method
 {

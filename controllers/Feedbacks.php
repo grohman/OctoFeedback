@@ -1,9 +1,9 @@
-<?php namespace Grohman\Feedback\Controllers;
+<?php namespace IDesigning\Feedback\Controllers;
 
 use Backend\Classes\FormField;
 use BackendMenu;
 use Backend\Classes\Controller;
-use Grohman\Feedback\Models\Feedback;
+use IDesigning\Feedback\Models\Feedback;
 
 /**
  * feedbacks Back-end Controller
@@ -24,20 +24,20 @@ class Feedbacks extends Controller
     /**
      * @var array Permissions required to view this page.
      */
-    protected $requiredPermissions = ['grohman.feedback.manage'];
+    protected $requiredPermissions = ['idesigning.feedback.manage'];
 
     public function __construct()
     {
         parent::__construct();
 
-        BackendMenu::setContext('Grohman.Feedback', 'feedback', 'feedbacks');
+        BackendMenu::setContext('IDesigning.Feedback', 'feedback', 'feedbacks');
 
         $this->pageTitle = $this->pageTitle ?: \Lang::get($this->getConfig('title', 'backend::lang.list.default_title'));
     }
 
     public function archived()
     {
-        BackendMenu::setContext('Grohman.Feedback', 'feedback', 'archived');
+        BackendMenu::setContext('IDesigning.Feedback', 'feedback', 'archived');
 
         $this->bodyClass = 'slim-container';
         $this->makeLists();
@@ -50,9 +50,9 @@ class Feedbacks extends Controller
         Feedback::archive(Feedback::query()->whereIn('id', $feedbackIds));
 
         if (count($feedbackIds) > 1) {
-            \Flash::success(\Lang::get('grohman.feedback::lang.backend.feedback.archive.bulkSuccess'));
+            \Flash::success(\Lang::get('idesigning.feedback::lang.backend.feedback.archive.bulkSuccess'));
         } else {
-            \Flash::success(\Lang::get('grohman.feedback::lang.backend.feedback.archive.success'));
+            \Flash::success(\Lang::get('idesigning.feedback::lang.backend.feedback.archive.success'));
         }
         return $this->listRefresh();
     }
@@ -61,7 +61,7 @@ class Feedbacks extends Controller
     {
         Feedback::archive(Feedback::query()->where('id', '=', $recordId));
 
-        \Flash::success(\Lang::get('grohman.feedback::lang.backend.feedback.archive.success'));
+        \Flash::success(\Lang::get('idesigning.feedback::lang.backend.feedback.archive.success'));
         return $this->makeRedirect();
     }
 

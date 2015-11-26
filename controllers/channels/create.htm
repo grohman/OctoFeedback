@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('grohman/feedback/channels') ?>">каналы</a></li>
+        <li><a href="<?= Backend::url('idesigning/feedback/channels') ?>">каналы</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -21,7 +21,7 @@
                     data-hotkey="ctrl+s, cmd+s"
                     data-load-indicator="Creating channel..."
                     class="btn btn-primary">
-                    Create
+                    Добавить
                 </button>
                 <button
                     type="button"
@@ -30,10 +30,10 @@
                     data-hotkey="ctrl+enter, cmd+enter"
                     data-load-indicator="Creating channel..."
                     class="btn btn-default">
-                    Create and Close
+                    Добавить и закрыть
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('grohman/feedback/channels') ?>">Cancel</a>
+                    <a href="<?= Backend::url('idesigning/feedback/channels') ?>">Отмена</a>
                 </span>
             </div>
         </div>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('grohman/feedback/channels') ?>" class="btn btn-default">Return to channels list</a></p>
+    <p><a href="<?= Backend::url('idesigning/feedback/channels') ?>" class="btn btn-default">Return to channels list</a></p>
 
 <?php endif ?>

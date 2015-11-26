@@ -1,4 +1,4 @@
-<?php namespace Grohman\Feedback\Updates;
+<?php namespace IDesigning\Feedback\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use Schema;

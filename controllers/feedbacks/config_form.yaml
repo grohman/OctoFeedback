@@ -6,25 +6,25 @@
 name: feedback
 
 # Model Form Field configuration
-form: $/grohman/feedback/models/feedback/fields.yaml
+form: $/idesigning/feedback/models/feedback/fields.yaml
 
 # Model Class name
-modelClass: Grohman\Feedback\Models\Feedback
+modelClass: IDesigning\Feedback\Models\Feedback
 
 # Default redirect location
-defaultRedirect: grohman/feedback/feedbacks
+defaultRedirect: idesigning/feedback/feedbacks
 
 # Create page
 create:
     title: Добавить фидбек
-    redirect: grohman/feedback/feedbacks/update/:id
-    redirectClose: grohman/feedback/feedbacks
+    redirect: idesigning/feedback/feedbacks/update/:id
+    redirectClose: idesigning/feedback/feedbacks
 
 # Update page
 update:
     title: Редактировать фидбек
-    redirect: grohman/feedback/feedbacks
-    redirectClose: grohman/feedback/feedbacks
+    redirect: idesigning/feedback/feedbacks
+    redirectClose: idesigning/feedback/feedbacks
 
 # Preview page
 preview:
