@@ -24,13 +24,6 @@ class CreateChannelsTable extends Migration
             $table->string('method');
             $table->string('method_data')->nullable();
         });
-
-        \DB::table('grohman_feedback_channels')->insert([
-            'name' => 'Default',
-            'code' => 'default',
-            'method' => 'email',
-            'prevent_save_database' => false
-        ]);
     }
 
     public function down()

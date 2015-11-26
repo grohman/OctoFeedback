@@ -1,12 +1,12 @@
 <?php namespace Grohman\Feedback\Updates;
 
-use Grohman\Feedback\Models\Channel;
+use DB;
 
 class SeedDefaultChannel extends \Seeder
 {
     public function run()
     {
-        Channel::create([
+        DB::table('grohman_feedback_channels')->insert([
             'name' => 'Default',
             'code' => 'default',
             'method' => 'email',
