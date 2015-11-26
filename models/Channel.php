@@ -42,7 +42,7 @@ class Channel extends \October\Rain\Database\Model
     public $morphMany = [ ];
     public $attachOne = [ ];
     public $attachMany = [
-        'files' => [ 'System\Models\File' ]
+        'files' => [ 'System\Models\File' ],
     ];
     /**
      * @var array List of attribute names which are json encoded and decoded from the database.
@@ -136,7 +136,7 @@ class Channel extends \October\Rain\Database\Model
             $feedback->save();
         }
 
-        $this->getMethodObj()->send($this->method_data, $data);
+        $this->getMethodObj()->send($this->method_data, $data, $this);
     }
 
     /**

@@ -9,6 +9,8 @@
 namespace Grohman\Feedback\Classes;
 
 
+use Grohman\Feedback\Models\Channel;
+
 class NoneMethod implements Method
 {
 
@@ -17,7 +19,7 @@ class NoneMethod implements Method
         // none
     }
 
-    public function send($methodData, $data)
+    public function send($methodData, $data, Channel $channel)
     {
         // none
     }

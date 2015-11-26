@@ -9,6 +9,8 @@
 namespace Grohman\Feedback\Classes;
 
 
+use Grohman\Feedback\Models\Channel;
+
 interface Method
 {
 
@@ -21,10 +23,11 @@ interface Method
     public function boot();
 
     /**
-     * @param array $methodData
-     * @param array $data
+     * @param array   $methodData
+     * @param array   $data
+     * @param Channel $channel
      * @return mixed
      */
-    public function send($methodData, $data);
+    public function send($methodData, $data, Channel $channel);
 
 }

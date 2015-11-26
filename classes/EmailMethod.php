@@ -76,6 +76,17 @@ class EmailMethod implements Method
                         'condition' => 'checked',
                     ],
                 ],
+
+                'files' => [
+                    'label' => 'Вложения ответного письма',
+                    'type' => 'fileupload',
+                    'trigger' => [
+                        'action' => 'show',
+                        'field' => 'method_data[backmail]',
+                        'condition' => 'checked',
+                    ],
+                ],
+
             ]);
         });
 
@@ -84,10 +95,10 @@ class EmailMethod implements Method
             $model->attributeNames[ 'method_data.email_destination' ] =
                 'grohman.feedback::lang.channel.emailDestination';
         });
-    }
+   }
 
 
-    public function send($methodData, $data)
+    public function send($methodData, $data, Channel $channel)
     {
         $sendTo = $methodData[ 'email_destination' ];
         if ($sendTo == null) {
@@ -132,9 +143,19 @@ class EmailMethod implements Method
             ]);
             $backTwig = new \Twig_Environment($backLoader);
             $subject = $backTwig->render('subject', $data);
+            $data['files'] = [];
+            $files = $channel->files()->get();
+            foreach($files as $file){
+                //dd(get_class_methods($file), $file);
+                $data['files'][] = ['name' => $file->getFilename(), 'path' => $file->getLocalPath()];
+            }
+
             Mail::queue('grohman.feedback::back-email', [ 'content' => $backTwig->render('main', $data) ],
                 function (Message $message) use ($sendTo, $subject, $data) {
                     $message->to($sendTo)->subject($subject);
+                    foreach ($data[ 'files' ] as $file) {
+                        $message->attach($file[ 'path' ], [ 'as' => $file[ 'name' ] ]);
+                    }
                 });
         }
     }
