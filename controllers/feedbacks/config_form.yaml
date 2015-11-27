@@ -16,16 +16,16 @@ defaultRedirect: idesigning/feedback/feedbacks
 
 # Create page
 create:
-    title: Добавить фидбек
+    title: Добавить запись
     redirect: idesigning/feedback/feedbacks/update/:id
     redirectClose: idesigning/feedback/feedbacks
 
 # Update page
 update:
-    title: Редактировать фидбек
+    title: Редактировать запись
     redirect: idesigning/feedback/feedbacks
     redirectClose: idesigning/feedback/feedbacks
 
 # Preview page
 preview:
-    title: Preview feedback
+    title: Предпросмотр

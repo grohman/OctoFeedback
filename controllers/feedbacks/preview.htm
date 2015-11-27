@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('idesigning/feedback/feedbacks') ?>">feedbacks</a></li>
+        <li><a href="<?= Backend::url('idesigning/feedback/feedbacks') ?>">Отзывы</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -14,9 +14,9 @@
     <?php if (!$this->formGetModel()->archived) :?>
         <div class="form-buttons">
             <div class="loading-indicator-container">
-                <button class="btn btn-danger" data-request="onArchive">Archive</button>
+                <button class="btn btn-danger" data-request="onArchive">В архив</button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('idesigning/feedback/feedbacks') ?>">Cancel</a>
+                    <a href="<?= Backend::url('idesigning/feedback/feedbacks') ?>">Назад</a>
                 </span>
             </div>
         </div>

@@ -9,7 +9,7 @@ list: $/idesigning/feedback/models/feedback/columns.yaml
 modelClass: IDesigning\Feedback\Models\Feedback
 
 # List Title
-title: Manage feedbacks
+title: Архивные записи
 
 # Link URL for each record
 recordUrl: idesigning/feedback/feedbacks/preview/:id
@@ -46,7 +46,7 @@ toolbar:
 filter:
     scopes:
         channel:
-            label: Channel
+            label: Канал
             modelClass: \IDesigning\Feedback\Models\Channel
             nameFrom: name
             conditions: channel_id in (:filtered)

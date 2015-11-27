@@ -9,7 +9,7 @@ list: $/idesigning/feedback/models/feedback/columns.yaml
 modelClass: IDesigning\Feedback\Models\Feedback
 
 # List Title
-title: Управление фидбеками
+title: Записи
 
 # Link URL for each record
 recordUrl: idesigning/feedback/feedbacks/preview/:id
