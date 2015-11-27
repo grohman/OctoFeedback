@@ -8,13 +8,13 @@ fields:
         disabled: true
 
     name:
-        label: Name
+        label: Имя
 
     email:
         label: Email
 
     message:
-        label: Message
+        label: Сообщение
         type: textarea
 
     files:
