@@ -95,7 +95,7 @@ class EmailMethod implements Method
             $model->attributeNames[ 'method_data.email_destination' ] =
                 'idesigning.feedback::lang.channel.emailDestination';
         });
-   }
+    }
 
 
     public function send($methodData, $data, Channel $channel)
@@ -143,11 +143,10 @@ class EmailMethod implements Method
             ]);
             $backTwig = new \Twig_Environment($backLoader);
             $subject = $backTwig->render('subject', $data);
-            $data['files'] = [];
+            $data[ 'files' ] = [ ];
             $files = $channel->files()->get();
-            foreach($files as $file){
-                //dd(get_class_methods($file), $file);
-                $data['files'][] = ['name' => $file->getFilename(), 'path' => $file->getLocalPath()];
+            foreach ($files as $file) {
+                $data[ 'files' ][] = [ 'name' => $file->getFilename(), 'path' => $file->getLocalPath() ];
             }
 
             Mail::queue('idesigning.feedback::back-email', [ 'content' => $backTwig->render('main', $data) ],
