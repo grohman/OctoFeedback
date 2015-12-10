@@ -1,9 +1,9 @@
-$(function(){
+$(function () {
     function sendFeedbackForm(form, successCallback, errorCallback) {
-        if(typeof FormData === 'undefined') {
+        if (typeof FormData === 'undefined') {
             // damn...
-            var $ifr = $('<iframe>', {'name':'feedbackFrame'}).css('display', 'none').appendTo('body');
-            if($(form).hasClass('falledback') == false) {
+            var $ifr = $('<iframe>', {'name': 'feedbackFrame'}).css('display', 'none').appendTo('body');
+            if ($(form).hasClass('falledback') == false) {
                 $(form).attr({
                     action: '/feedback/frame_fallback',
                     target: 'feedbackFrame',
@@ -11,7 +11,7 @@ $(function(){
                 }).addClass('falledback');
             }
             $(form).submit();
-            $ifr.on('load', function(){
+            $ifr.on('load', function () {
                 $ifr.remove();
                 successCallback('ok');
                 $(form).removeClass('falledback').removeAttr('target').removeAttr('action');
@@ -41,12 +41,21 @@ $(function(){
         }
     }
 
-    if($('.idesigning_feedback-forms').length) {
+    if ($('.idesigning_feedback-forms').length) {
         $('.idesigning_feedback-forms').on('submit', function () {
+            var _this = this;
             sendFeedbackForm(this, function (data) {
-                alert(data.result);
+                if ($(_this).data('feedbackSuccess') !== undefined && window[$(_this).data('feedbackSuccess')] !== undefined) {
+                    return window[$(_this).data('feedbackSuccess')](_this, data);
+                } else {
+                    alert(data.result);
+                }
             }, function (data) {
-                alert(data.responseJSON.result);
+                if ($(_this).data('feedbackError') !== undefined && window[$(_this).data('feedbackError')] !== undefined) {
+                    return window[$(_this).data('feedbackError')](_this, data);
+                } else {
+                    alert(data.responseJSON.result);
+                }
             });
             return false;
         });
