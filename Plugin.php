@@ -35,6 +35,8 @@ class Plugin extends PluginBase
                     $model->extendClassWith('\IDesigning\Tattler\Lib\Inject');
                 }
             }
+
+            $model->rules = config()->get('idesigning.feedback::validation');
         });
 
         Event::listen('backend.form.extendFields', function ($widget) {

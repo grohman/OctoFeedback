@@ -1,6 +1,13 @@
 <?php
 
     return [
+        'validation' => [
+            'name' => 'string|required',
+            'email' => 'required|email',
+            'message' => 'required',
+            'channel_id' => 'integer|required',
+            //'extra.product' => 'string|required',
+        ],
         'fields' => [
             'id' => [
                 'label' => '#',
@@ -31,7 +38,7 @@
         ],
         'columns' => [
             'id' => [
-                'label' => "#",
+                'label' => '#',
                 'searchable' => true
             ],
             'name' => [

@@ -37,14 +37,6 @@ class Feedbacks extends Controller
             $this->pageTitle ?: \Lang::get($this->getConfig('title', 'backend::lang.list.default_title'));
     }
 
-    //
-    //public function index()
-    //{
-    //    parent::index();
-    //    //$this->widget->list->addColumns(config()->get('idesigning.feedback::columns'));
-    //    $this->widget->list->columns = config()->get('idesigning.feedback::columns');
-    //}
-
     public function archived()
     {
         BackendMenu::setContext('IDesigning.Feedback', 'feedback', 'archived');
