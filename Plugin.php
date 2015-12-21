@@ -1,9 +1,9 @@
 <?php namespace IDesigning\Feedback;
 
-use Illuminate\Support\Facades\Lang;
-use System\Classes\PluginBase;
 use App;
+use Event;
 use IDesigning\Feedback\Models\Feedback as FeedbackModel;
+use System\Classes\PluginBase;
 
 /**
  * feedback Plugin Information File
@@ -19,10 +19,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Обратная связь',
+            'name' => 'Обратная связь',
             'description' => 'Управление формами обратной связи',
-            'author'      => 'Daniel Podrabinek',
-            'icon'        => 'icon-comments-o'
+            'author' => 'Daniel Podrabinek',
+            'icon' => 'icon-comments-o'
         ];
     }
 
@@ -36,6 +36,28 @@ class Plugin extends PluginBase
                 }
             }
         });
+
+        Event::listen('backend.form.extendFields', function ($widget) {
+            if (!$widget->getController() instanceof \IDesigning\Feedback\Controllers\Feedbacks) {
+                return;
+            }
+            $oldFields = $widget->getFields();
+            foreach ($oldFields as $key => $value) {
+                $widget->removeField($key);
+            }
+            $widget->addFields(config()->get('idesigning.feedback::fields'));
+        });
+
+        Event::listen('backend.list.extendColumns', function ($list) {
+            if (!$list->model instanceof \IDesigning\Feedback\Models\Feedback) {
+                return;
+            }
+            $oldColumns = $list->getColumns();
+            foreach ($oldColumns as $key => $value) {
+                $list->removeColumn($key);
+            }
+            $list->addColumns(config()->get('idesigning.feedback::columns'));
+        });
     }
 
     /**
@@ -43,17 +65,16 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-        \Validator::extend("emails", function($attribute, $value, $parameters) {
+        \Validator::extend("emails", function ($attribute, $value, $parameters) {
             $rules = [
                 'email' => 'required|email',
             ];
 
-            $emails = [];
+            $emails = [ ];
             if (!is_array($value)) {
                 $emails = explode(',', $value);
-            }
-            else {
-                $emails = [$value];
+            } else {
+                $emails = [ $value ];
             }
 
             foreach ($emails as $email) {
@@ -83,8 +104,14 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'idesigning.feedback.manage' => ['label' => 'idesigning.feedback::lang.permissions.feedback.manage', 'tab' => 'cms::lang.permissions.name'],
-            'idesigning.feedback.settings.channel' => ['label' => 'idesigning.feedback::lang.permissions.settings.channel', 'tab' => 'system::lang.permissions.name']
+            'idesigning.feedback.manage' => [
+                'label' => 'idesigning.feedback::lang.permissions.feedback.manage',
+                'tab' => 'cms::lang.permissions.name'
+            ],
+            'idesigning.feedback.settings.channel' => [
+                'label' => 'idesigning.feedback::lang.permissions.settings.channel',
+                'tab' => 'system::lang.permissions.name'
+            ]
         ];
     }
 
@@ -106,23 +133,23 @@ class Plugin extends PluginBase
     {
         return [
             'feedback' => [
-                'label'       => 'Обратная связь',
-                'url'         => \Backend::url('idesigning/feedback/feedbacks'),
-                'icon'        => 'icon-comments-o',
-                'permissions' => ['idesigning.feedback.manage'],
+                'label' => 'Обратная связь',
+                'url' => \Backend::url('idesigning/feedback/feedbacks'),
+                'icon' => 'icon-comments-o',
+                'permissions' => [ 'idesigning.feedback.manage' ],
 
                 'sideMenu' => [
                     'feedbacks' => [
-                        'label'       => 'Записи',
-                        'icon'        => 'icon-inbox',
-                        'url'         => \Backend::url('idesigning/feedback/feedbacks'),
-                        'permissions' => ['idesigning.feedback.manage'],
+                        'label' => 'Записи',
+                        'icon' => 'icon-inbox',
+                        'url' => \Backend::url('idesigning/feedback/feedbacks'),
+                        'permissions' => [ 'idesigning.feedback.manage' ],
                     ],
                     'archived' => [
-                        'label'       => 'Архив',
-                        'icon'        => 'icon-archive',
-                        'url'         => \Backend::url('idesigning/feedback/feedbacks/archived'),
-                        'permissions' => ['idesigning.feedback.manage']
+                        'label' => 'Архив',
+                        'icon' => 'icon-archive',
+                        'url' => \Backend::url('idesigning/feedback/feedbacks/archived'),
+                        'permissions' => [ 'idesigning.feedback.manage' ]
                     ],
                 ]
 
@@ -141,7 +168,7 @@ class Plugin extends PluginBase
                 'url' => \Backend::url('idesigning/feedback/channels'),
                 'order' => 500,
                 'keywords' => 'feedback channel',
-                'permissions' => ['idesigning.feedback.settings.channel']
+                'permissions' => [ 'idesigning.feedback.settings.channel' ]
             ]
         ];
     }

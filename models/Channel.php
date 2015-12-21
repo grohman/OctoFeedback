@@ -132,6 +132,13 @@ class Channel extends \October\Rain\Database\Model
         $feedback->channel_id = $this->id;
 
         if (!$this->prevent_save_database) {
+            $extra = [ ];
+            foreach ($data as $key => $value) {
+                if ($feedback->getAttribute($key) == false && $value != null && is_object($value) == false) {
+                    $extra[ $key ] = $value;
+                }
+            }
+            $feedback->extra = $extra;
             $feedback->validate();
             $feedback->save();
         }

@@ -28,3 +28,6 @@
 1.2.8:
   - Run table migrations
   - branding.php
+1.2.9:
+  - Run table migrations
+  - add_extra_to_feedbacks.php

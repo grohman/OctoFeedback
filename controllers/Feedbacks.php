@@ -1,8 +1,8 @@
 <?php namespace IDesigning\Feedback\Controllers;
 
+use Backend\Classes\Controller;
 use Backend\Classes\FormField;
 use BackendMenu;
-use Backend\Classes\Controller;
 use IDesigning\Feedback\Models\Feedback;
 
 /**
@@ -24,16 +24,26 @@ class Feedbacks extends Controller
     /**
      * @var array Permissions required to view this page.
      */
-    protected $requiredPermissions = ['idesigning.feedback.manage'];
+    protected $requiredPermissions = [ 'idesigning.feedback.manage' ];
 
     public function __construct()
     {
         parent::__construct();
 
+
         BackendMenu::setContext('IDesigning.Feedback', 'feedback', 'feedbacks');
 
-        $this->pageTitle = $this->pageTitle ?: \Lang::get($this->getConfig('title', 'backend::lang.list.default_title'));
+        $this->pageTitle =
+            $this->pageTitle ?: \Lang::get($this->getConfig('title', 'backend::lang.list.default_title'));
     }
+
+    //
+    //public function index()
+    //{
+    //    parent::index();
+    //    //$this->widget->list->addColumns(config()->get('idesigning.feedback::columns'));
+    //    $this->widget->list->columns = config()->get('idesigning.feedback::columns');
+    //}
 
     public function archived()
     {
@@ -54,6 +64,7 @@ class Feedbacks extends Controller
         } else {
             \Flash::success(\Lang::get('idesigning.feedback::lang.backend.feedback.archive.success'));
         }
+
         return $this->listRefresh();
     }
 
@@ -62,6 +73,7 @@ class Feedbacks extends Controller
         Feedback::archive(Feedback::query()->where('id', '=', $recordId));
 
         \Flash::success(\Lang::get('idesigning.feedback::lang.backend.feedback.archive.success'));
+
         return $this->makeRedirect();
     }
 
@@ -85,7 +97,7 @@ class Feedbacks extends Controller
 
     /**
      * Replace a table column value (<td>...</td>)
-     * @param  \Model $record The populated model used for the column
+     * @param  \Model $record     The populated model used for the column
      * @param  string $columnName The column name to override
      * @param  string $definition List definition (optional)
      * @return string HTML view

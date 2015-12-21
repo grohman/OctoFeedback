@@ -82,6 +82,8 @@ class Feedback extends Model
         'files' => [ 'System\Models\File' ]
     ];
 
+    protected $jsonable = [ 'extra' ];
+
 
     public static function archive($query)
     {
