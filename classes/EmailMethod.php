@@ -35,8 +35,8 @@ class EmailMethod implements Method
                     ]
                 ],
                 'method_data[template]' => [
-                    'type' => 'codeeditor',
-                    'language' => 'twig',
+                    'type' => 'richeditor',
+                    //'language' => 'twig',
                     'label' => "Шаблон",
                     'commentAbove' => 'Можно использовать переменные из формы - например {{ name }} для вставки имени отправителя. Так же доступны phone, email, message',
                     'required' => true,
@@ -68,8 +68,8 @@ class EmailMethod implements Method
 
                 'method_data[backmail_template]' => [
                     'label' => 'Шаблон ответного письма',
-                    'language' => 'twig',
-                    'type' => 'codeeditor',
+                    //'language' => 'twig',
+                    'type' => 'richeditor',
                     'trigger' => [
                         'action' => 'show',
                         'field' => 'method_data[backmail]',
