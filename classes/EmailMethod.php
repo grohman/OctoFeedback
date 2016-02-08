@@ -14,6 +14,9 @@ class EmailMethod implements Method
     public function boot()
     {
         Channels::extendFormFields(function (Form $form, $model) {
+            $validatorConfig = config()->get('idesigning.feedback::validation');
+            unset($validatorConfig['channel_id']);
+            $messageVariables = array_keys($validatorConfig);
             $form->addFields([
                 'method_data[email_destination]' => [
                     'label' => "idesigning.feedback::lang.channel.emailDestination",
@@ -38,7 +41,7 @@ class EmailMethod implements Method
                     'type' => 'richeditor',
                     //'language' => 'twig',
                     'label' => "Шаблон",
-                    'commentAbove' => 'Можно использовать переменные из формы - например {{ name }} для вставки имени отправителя. Так же доступны phone, email, message',
+                    'commentAbove' => 'Можно использовать переменные из формы - например {{ name }} для вставки имени отправителя. Так же доступны '.implode(', ', $messageVariables),
                     'required' => true,
                     'trigger' => [
                         'action' => "show",
