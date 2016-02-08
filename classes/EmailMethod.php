@@ -16,6 +16,15 @@ class EmailMethod implements Method
         Channels::extendFormFields(function (Form $form, $model) {
             $validatorConfig = config()->get('idesigning.feedback::validation');
             unset($validatorConfig['channel_id']);
+
+            foreach($validatorConfig as $key=>$value){
+                if(preg_match('/extra./', $key)) {
+                    $newKey = str_replace('extra.', '', $key);
+                    $validatorConfig[$newKey] = $value;
+                    unset($validatorConfig[$key]);
+                }
+            }
+
             $messageVariables = array_keys($validatorConfig);
             $form->addFields([
                 'method_data[email_destination]' => [
